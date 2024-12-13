@@ -8,12 +8,14 @@ def kravo(pocetKrav, t, pocetNaPrezitie, kravaList):
         if int(item[0])/int(item[1]) <= t and prekazkyList.count(item) < 1:
             vBezepeci += 1
         elif int(item[0])/int(item[1]) <= t:
-
+            canifPrekazkyNieList.append(item)
         else:
             prekazkyList.append(item)
-
-
-
+    x = pocetNaPrezitie - vBezepeci
+    if len (canifPrekazkyNieList) < x:
+        return -1
+    else:
+        return x
 
 
 inp = input().split()
