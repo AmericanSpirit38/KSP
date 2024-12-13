@@ -5,19 +5,25 @@ def kravo(pocetKrav, t, pocetNaPrezitie, kravaList):
     prekazkyList = []
     canifPrekazkyNieList = []
     for item in kravaList:
+        print(int(item[0])/int(item[1]))
         if int(item[0])/int(item[1]) <= t and len(prekazkyList) < 1:
             vBezepeci += 1
         elif int(item[0])/int(item[1]) <= t and len(prekazkyList) >= 1:
-            canifPrekazkyNieList.append((prekazkyList, item))
+            canifPrekazkyNieList.append((len(prekazkyList), item))
         else:
             prekazkyList.append(item)
     x = pocetNaPrezitie - vBezepeci
     print("canifPrekazkyNieList", canifPrekazkyNieList)
     print("prekazkyList", prekazkyList)
+    canifPrekazkyNieList = [item for item in canifPrekazkyNieList if item not in prekazkyList]
+    print("canifPrekazkyNieList", canifPrekazkyNieList)
+    res = 0
     if len (canifPrekazkyNieList) < x:
         return -1
     else:
-        return x
+        for z in range(x):
+            res += int(canifPrekazkyNieList[z][0])
+    return res
 
 
 inp = input().split()
